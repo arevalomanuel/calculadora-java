@@ -1,51 +1,60 @@
 package Entidad;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 
-public class interfaz extends JPanel implements ActionListener {
-
+public class interfaz extends JFrame{
     //numers
-    private final List<JButton> keyPat = new ArrayList();
-
-    private final int L_HEIGHT = 500;
-    private final int L_WIDTH = 500;
+    JButton keyPat[] ;
 
     public interfaz() {
-        setPreferredSize(new Dimension(L_WIDTH, L_HEIGHT));
-        numericKeypat();
+         createButtons();
     }
-
-    public void numericKeypat() {
-       
-    }
-
+    
     private void createButtons() {
-         for (int i = 0; i < 24; i++) {
-            keyPat.add(createButton());
+        this.setSize(500, 500);
+        this.setTitle("man");
+        this.setLayout(null);
+//       setResizable(false);
+//        pack();
+        
+        String vecT[]= {"1","2","3","4","5","6","5","8","9","+","-","*","=","/"};
+
+        keyPat = new JButton[vecT.length];
+
+        int xy = 0;
+        int cont = 0;
+        
+         for (int i = 0; i < keyPat.length; i++) {
+            keyPat[i] = new JButton();
+            keyPat[i].setText(vecT[i]);
+            keyPat[i].setBounds(100*cont, xy, 90, 30);
+            this.getContentPane().add(keyPat[i]);
+            cont = cont + 1;
+            
+             if (cont == 4) {
+                 xy = xy + 100;
+                 cont = 0;
+             }
+            
         }
     }
 
-    private JButton createButton() {
-        JButton boton = new JButton();
-        boton.setSize(50, 50);
-        return boton;
-    }
+//    private JButton createButton() {
+//        JButton boton = new JButton();
+//        boton.setSize(new Dimension(100,100));
+////        xLit = xLit + 100;
+////        yLit = yLit + 100;
+//        return boton;
+//    }
 
     public static void main(String[] args) {
         interfaz x = new interfaz();
-
-        x.createButton();
+        
+        x.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+ 
 }
