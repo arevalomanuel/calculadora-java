@@ -2,59 +2,52 @@ package Entidad;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class interfaz extends JFrame{
+public final class interfaz extends JFrame {
+
     //numers
-    JButton keyPat[] ;
+    JButton keyPat[];
+    JTextField cajaDeTexto;
+    JPanel panel;
 
     public interfaz() {
-         createButtons();
+        createButtons();
     }
-    
+
     private void createButtons() {
         this.setSize(500, 500);
         this.setTitle("man");
-        this.setLayout(null);
-//       setResizable(false);
-//        pack();
-        
-        String vecT[]= {"1","2","3","4","5","6","5","8","9","+","-","*","=","/"};
+        this.setLayout(new GridLayout(2, 1));
 
+        cajaDeTexto = new JTextField();
+        cajaDeTexto.setSize(100, 200);
+//        cajaDeTexto.setLayout(new GridLayout(1,0));
+        this.add(cajaDeTexto);
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(4,1));
+        
+        String vecT[] = {"1", "2", "3", "4", "5", "6", "5", "8", "9", "+", "-", "*", "=", "/", ",", "R"};
         keyPat = new JButton[vecT.length];
 
-        int xy = 0;
-        int cont = 0;
-        
-         for (int i = 0; i < keyPat.length; i++) {
+
+        for (int i = 0; i < keyPat.length; i++) {
             keyPat[i] = new JButton();
             keyPat[i].setText(vecT[i]);
-            keyPat[i].setBounds(100*cont, xy, 90, 30);
-            this.getContentPane().add(keyPat[i]);
-            cont = cont + 1;
-            
-             if (cont == 4) {
-                 xy = xy + 100;
-                 cont = 0;
-             }
-            
+            keyPat[i].setSize(90, 30);
+            panel.add(keyPat[i]);
         }
+        this.getContentPane().add(panel);
     }
-
-//    private JButton createButton() {
-//        JButton boton = new JButton();
-//        boton.setSize(new Dimension(100,100));
-////        xLit = xLit + 100;
-////        yLit = yLit + 100;
-//        return boton;
-//    }
 
     public static void main(String[] args) {
         interfaz x = new interfaz();
-        
+
         x.setVisible(true);
     }
 
- 
 }
